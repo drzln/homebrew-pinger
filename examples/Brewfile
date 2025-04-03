@@ -1,0 +1,2 @@
+tap "drzln/pinger"
+brew "pinger"
