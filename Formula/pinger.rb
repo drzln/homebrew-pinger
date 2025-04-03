@@ -1,13 +1,13 @@
 class Pinger < Formula
   include Language::Python::Virtualenv
 
-  desc 'pinger platform engineering'
+  desc 'Platform engineering CLI for pinging things with style'
   homepage 'https://github.com/drzln/pinger'
   url 'https://files.pythonhosted.org/packages/68/b7/1db73829b43d4c7dfe59f56839c7020a618976095f396e914dd23f963999/pinger-0.1.0.tar.gz'
   sha256 'd507344c8d16c71eaa492f1d8eec86e7678cf2bcc71433dd84cf9732197e0f14'
   license 'MIT'
 
-  depends_on 'python@3.11'
+  depends_on 'python@3.12'
 
   resource 'annotated-types' do
     url 'https://files.pythonhosted.org/packages/ee/67/531ea369ba64dcff5ec9c3402f9f51bf748cec26dde048a2f973a4eea7f5/annotated_types-0.7.0.tar.gz'
@@ -29,11 +29,6 @@ class Pinger < Formula
     sha256 'bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba'
   end
 
-  resource 'pinger' do
-    url 'https://files.pythonhosted.org/packages/68/b7/1db73829b43d4c7dfe59f56839c7020a618976095f396e914dd23f963999/pinger-0.1.0.tar.gz'
-    sha256 'd507344c8d16c71eaa492f1d8eec86e7678cf2bcc71433dd84cf9732197e0f14'
-  end
-
   resource 'pydantic' do
     url 'https://files.pythonhosted.org/packages/b0/41/832125a41fe098b58d1fdd04ae819b4dc6b34d6b09ed78304fd93d4bc051/pydantic-2.11.2.tar.gz'
     sha256 '2138628e050bd7a1e70b91d4bf4a91167f4ad76fdb83209b107c8d84b854917e'
@@ -44,12 +39,12 @@ class Pinger < Formula
     sha256 'bcc9c6fdb0ced789245b02b7d6603e17d1563064ddcfc36f046b61c0c05dd9df'
   end
 
-  resource 'Pygments' do
+  resource 'pygments' do
     url 'https://files.pythonhosted.org/packages/7c/2d/c3338d48ea6cc0feb8446d8e6937e1408088a72a39937982cc6111d17f84/pygments-2.19.1.tar.gz'
     sha256 '61c16d2a8576dc0649d9f39e089b5f02bcd27fba10d8fb4dcc28173f7a45151f'
   end
 
-  resource 'PyYAML' do
+  resource 'pyyaml' do
     url 'https://files.pythonhosted.org/packages/54/ed/79a089b6be93607fa5cdaedf301d7dfb23af5f25c398d5ead2525b063e17/pyyaml-6.0.2.tar.gz'
     sha256 'd584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e'
   end
@@ -84,6 +79,8 @@ class Pinger < Formula
   end
 
   test do
-    system "#{bin}/pinger", '--help'
+    # Simple smoke test: run CLI and check for expected output
+    output = shell_output("#{bin}/pinger --help")
+    assert_match 'Usage', output
   end
 end
